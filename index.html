@@ -67,7 +67,7 @@
                 controls: ['zoomControl', 'fullscreenControl']
             });
 
-            // МАРШРУТ 1: «Как всё начиналось» (синие метки)
+            // МАРШРУТ 1: «Как всё начиналось»
             var route1 = [
                 { 
                     coords: [55.375501, 86.071729], 
@@ -89,7 +89,7 @@
                 }
             ];
 
-            // МАРШРУТ 2: «Чем город стал» (красные метки)
+            // МАРШРУТ 2: «Чем город стал»
             var route2 = [
                 { 
                     coords: [55.351324, 86.100151], 
@@ -141,8 +141,8 @@
                 }
             ];
 
-            // Функция добавления меток
-            function addPoints(points, color) {
+            // Функция добавления меток с кастомными иконками
+            function addPoints(points, iconHref) {
                 points.forEach(function(point) {
                     var balloonHtml = '<b>' + point.name + '</b>';
                     
@@ -155,15 +155,19 @@
                         balloonContent: balloonHtml,
                         iconContent: point.num
                     }, {
-                        preset: 'islands#' + color + 'Icon'
+                        iconLayout: 'default#imageWithContent',
+                        iconImageHref: iconHref,
+                        iconImageSize: [40, 40],
+                        iconImageOffset: [-20, -40],
+                        iconContentOffset: [0, -30]
                     });
                     myMap.geoObjects.add(placemark);
                 });
             }
 
-            // Маршрут 1 — синий, маршрут 2 — красный
-            addPoints(route1, 'blue');
-            addPoints(route2, 'red');
+            // Маршрут 1 — синяя иконка, маршрут 2 — красная
+            addPoints(route1, 'blueicon.png');
+            addPoints(route2, 'redicon.png');
         }
     </script>
 </body>
